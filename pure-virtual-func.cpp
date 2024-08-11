@@ -49,5 +49,8 @@ int main() {
     Print(e);
     Print(p);
 
+    delete e; // Free memory allocated for Entity
+    delete p; // Free memory allocated for Person
+
     return 0;
 }
