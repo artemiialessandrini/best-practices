@@ -9,9 +9,17 @@
 
 
 #include <string>
+#include <queue>
+#include <mutex>
+#include <thread>
+#include <unordered_set>
+#include <vector>
+#include <iostream>
+#include <atomic>
+
 class Frame {
 public:
-    Frame(const std::string &data, uint64_t ts);
+    Frame(const std::string &data, uint64_t ts) : data(data), timestamp(ts) {}
 
     ~Frame() = default;
 
@@ -68,7 +76,10 @@ public:
      *
      */
 private:
-    size_t client_num_ = 0;
+    size_t client_num_ = 5;
+    const size_t max_frames_ = 30;
+    std::queue<Frame> frames_;
+
 
 // TODO: Add other methods you would like to use for your implementation
 };
